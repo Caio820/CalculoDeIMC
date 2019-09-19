@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,15 +23,44 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(MainActivity.this, ResultadoActivity.class);
 
-                intent.putExtra("Altura", 1.65);
-                intent.putExtra("Peso", 86.2);
+                Double altura = getAltura();
+                Double peso = getPeso();
 
-                startActivity(intent);
-                //Log.d("Button", "Clicou No Botão");
+                if (altura <= 0 || peso <= 0) {
+                    //trata o erro;
+                } else {
+                    intent.putExtra("Altura", getAltura());
+                    intent.putExtra("Peso", getPeso());
+                    startActivity(intent);
+                }
             }
         });
 
     }
+
+    private Double getAltura() {
+        try {
+            EditText text = findViewById(R.id.textAltura);
+            Double altura = Double.parseDouble(text.getText().toString());
+            return altura;
+        } catch (Exception e) {
+            return 0.0;
+        }
+    }
+
+
+    private Double getPeso() {
+        try {
+            EditText text = findViewById(R.id.textPeso);
+            Double peso = Double.parseDouble(text.getText().toString());
+            return peso;
+        } catch (Exception e) {
+            return 0.0;
+        }
+
+    }
 }
+
