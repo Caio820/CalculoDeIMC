@@ -2,6 +2,7 @@ package com.example.calculodeimc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 Double peso = getPeso();
 
                 if (altura <= 0 || peso <= 0) {
-                    //trata o erro;
+                    showMessage("Insira um valor maior que 0 nos dois campos.");
                 } else {
                     intent.putExtra("Altura", getAltura());
                     intent.putExtra("Peso", getPeso());
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Double getAltura() {
+
         try {
             EditText text = findViewById(R.id.textAltura);
             Double altura = Double.parseDouble(text.getText().toString());
@@ -51,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private Double getPeso() {
+
         try {
             EditText text = findViewById(R.id.textPeso);
             Double peso = Double.parseDouble(text.getText().toString());
@@ -60,6 +63,17 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             return 0.0;
         }
+
+    }
+
+    private void showMessage(String mensagem){
+
+        Context context = getApplicationContext();
+        String text = mensagem;
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
 
     }
 }

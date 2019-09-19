@@ -3,6 +3,7 @@ package com.example.calculodeimc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -23,6 +24,10 @@ public class ResultadoActivity extends AppCompatActivity {
 
         textView.setText(sIMC);
         textViewMensagem.setText(avaliaIMC(imc));
+
+        if(imc > 30){
+            getWindow().getDecorView().setBackgroundColor(Color.RED);
+        }
     }
 
     private Double calculaIMC() {
