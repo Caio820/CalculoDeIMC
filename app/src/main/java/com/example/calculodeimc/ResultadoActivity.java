@@ -27,6 +27,8 @@ public class ResultadoActivity extends AppCompatActivity {
 
         if(imc > 30){
             getWindow().getDecorView().setBackgroundColor(Color.RED);
+        }else{
+            getWindow().getDecorView().setBackgroundColor(Color.GREEN);
         }
     }
 
